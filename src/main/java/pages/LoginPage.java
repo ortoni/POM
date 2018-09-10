@@ -13,7 +13,7 @@ public class LoginPage extends ProjectMethods {
 	public LoginPage() {
 		PageFactory.initElements(driver, this);
 	}
-
+    //changed by Gayatri
 	@FindBy(id="username")
 	WebElement eleUname;
 	@Given("Enter username as (.*)")
