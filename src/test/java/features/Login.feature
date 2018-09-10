@@ -1,8 +1,8 @@
 Feature: LeafTaps Automation
 Scenario: Login
-	And Enter username as DemoSalesManager 
-	And Enter password as crmsfa 
-	When Click login button 
+	And Enter username as DemoSalesManagera 
+	And Enter password as crmsfa
+	When Click login button
 	Then verify that login is succesful
 	And Click logout
 	
