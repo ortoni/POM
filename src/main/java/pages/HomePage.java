@@ -16,6 +16,8 @@ public class HomePage extends ProjectMethods {
 	@And("Click logout")
 	public LoginPage clickLogOut() {
 	click(eleLogOut);
+	//2nd change
+	System.out.println("login clicked successfully");
 	return new LoginPage();
 	}
 }
