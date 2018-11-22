@@ -27,6 +27,7 @@ import utils.Report;
 public class SeMethods extends Report implements WdMethods{
 	public int i = 1;
 	public static RemoteWebDriver driver;
+	@Override
 	public void startApp(String browser, String url) {
 		try {
 			if(browser.equalsIgnoreCase("chrome")){
@@ -45,6 +46,7 @@ public class SeMethods extends Report implements WdMethods{
 		}
 	}
 
+	@Override
 	public WebElement locateElement(String locator, String locValue) {
 		try {
 			switch(locator) {
@@ -65,10 +67,12 @@ public class SeMethods extends Report implements WdMethods{
 		return null;
 	}
 
+	@Override
 	public WebElement locateElement(String locValue) {
 		return driver.findElementById(locValue);
 	}
 
+	@Override
 	public void type(WebElement ele, String data) {
 		try {
 			ele.clear();
@@ -98,6 +102,7 @@ public class SeMethods extends Report implements WdMethods{
 	}
 
 	
+	@Override
 	public void click(WebElement ele) {
 		String text = "";
 		try {			
@@ -111,6 +116,7 @@ public class SeMethods extends Report implements WdMethods{
 		} 
 	}
 
+	@Override
 	public String getText(WebElement ele) {	
 		String bReturn = "";
 		try {
@@ -141,6 +147,7 @@ public class SeMethods extends Report implements WdMethods{
 		return bReturn;
 	}
 
+	@Override
 	public void selectDropDownUsingText(WebElement ele, String value) {
 		try {
 			new Select(ele).selectByVisibleText(value);
@@ -150,6 +157,7 @@ public class SeMethods extends Report implements WdMethods{
 		}
 	}
 
+	@Override
 	public void selectDropDownUsingIndex(WebElement ele, int index) {
 		try {
 			new Select(ele).selectByIndex(index);
@@ -159,6 +167,7 @@ public class SeMethods extends Report implements WdMethods{
 		} 
 	}
 
+	@Override
 	public boolean verifyTitle(String title) {
 		boolean bReturn =false;
 		try {
@@ -174,6 +183,7 @@ public class SeMethods extends Report implements WdMethods{
 		return bReturn;
 	}
 
+	@Override
 	public void verifyExactText(WebElement ele, String expectedText) {
 		try {
 			if(getText(ele).equals(expectedText)) {
@@ -187,6 +197,7 @@ public class SeMethods extends Report implements WdMethods{
 
 	}
 
+	@Override
 	public void verifyPartialText(WebElement ele, String expectedText) {
 		try {
 			if(getText(ele).contains(expectedText)) {
@@ -199,6 +210,7 @@ public class SeMethods extends Report implements WdMethods{
 		} 
 	}
 
+	@Override
 	public void verifyExactAttribute(WebElement ele, String attribute, String value) {
 		try {
 			if(getAttribute(ele, attribute).equals(value)) {
@@ -212,6 +224,7 @@ public class SeMethods extends Report implements WdMethods{
 
 	}
 
+	@Override
 	public void verifyPartialAttribute(WebElement ele, String attribute, String value) {
 		try {
 			if(getAttribute(ele, attribute).contains(value)) {
@@ -224,6 +237,7 @@ public class SeMethods extends Report implements WdMethods{
 		}
 	}
 
+	@Override
 	public void verifySelected(WebElement ele) {
 		try {
 			if(ele.isSelected()) {
@@ -236,6 +250,7 @@ public class SeMethods extends Report implements WdMethods{
 		}
 	}
 
+	@Override
 	public void verifyDisplayed(WebElement ele) {
 		try {
 			if(ele.isDisplayed()) {
@@ -248,6 +263,7 @@ public class SeMethods extends Report implements WdMethods{
 		} 
 	}
 
+	@Override
 	public void switchToWindow(int index) {
 		try {
 			Set<String> allWindowHandles = driver.getWindowHandles();
@@ -261,6 +277,7 @@ public class SeMethods extends Report implements WdMethods{
 		}
 	}
 
+	@Override
 	public void switchToFrame(WebElement ele) {
 		try {
 			driver.switchTo().frame(ele);
@@ -272,6 +289,7 @@ public class SeMethods extends Report implements WdMethods{
 		} 
 	}
 
+	@Override
 	public void acceptAlert() {
 		String text = "";		
 		try {
@@ -286,6 +304,7 @@ public class SeMethods extends Report implements WdMethods{
 		}  
 	}
 
+	@Override
 	public void dismissAlert() {
 		String text = "";		
 		try {
@@ -300,6 +319,7 @@ public class SeMethods extends Report implements WdMethods{
 		} 
 	}
 
+	@Override
 	public String getAlertText() {
 		String text = "";		
 		try {
@@ -313,10 +333,11 @@ public class SeMethods extends Report implements WdMethods{
 		return text;
 	}
 
+	@Override
 	public long takeSnap(){
 		long number = (long) Math.floor(Math.random() * 900000000L) + 10000000L; 
 		try {
-			FileUtils.copyFile(driver.getScreenshotAs(OutputType.FILE) , new File("./reports/images/"+number+".jpg"));
+			FileUtils.copyFile(driver.getScreenshotAs(OutputType.FILE) , new File("./reports/"+number+".jpg"));
 		} catch (WebDriverException e) {
 			System.out.println("The browser has been closed.");
 		} catch (IOException e) {
@@ -325,6 +346,7 @@ public class SeMethods extends Report implements WdMethods{
 		return number;
 	}
 
+	@Override
 	public void closeBrowser() {
 		try {
 			driver.close();
@@ -334,6 +356,7 @@ public class SeMethods extends Report implements WdMethods{
 		}
 	}
 
+	@Override
 	public void closeAllBrowsers() {
 		try {
 			driver.quit();
