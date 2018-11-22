@@ -44,7 +44,7 @@ public class ProjectMethods extends SeMethods {
 		closeAllBrowsers();
 	}
 
-	@DataProvider(name="fetchData")
+	@DataProvider(name="fetchData", indices = 0)
 	public  Object[][] getData(){
 		return DataInputProvider.getSheet(dataSheetName);		
 	}	

@@ -53,15 +53,15 @@ dependencies {
 	// https://mvnrepository.com/artifact/io.cucumber/cucumber-java
 	compile group: 'io.cucumber', name: 'cucumber-java', version: '3.0.2'
 }
-/*test {
+test {
 	useTestNG() { suites 'testng.xml' }
 }
-sourceSets{ test.java.srcDir 'src/main' }*/
-task cucumber() {
+sourceSets{ test.java.srcDir 'src/main' }
+/*task cucumber() {
 	doLast {
 		javaexec {
 			main = "cucumber.api.cli.Main"
 			args = ['src/test/java']
 		}
 	}
-}
+}*/
