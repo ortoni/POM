@@ -31,7 +31,7 @@ public class ProjectMethods extends SeMethods {
 		test = startTestCase(testNodes);
 		test.assignCategory(category);
 		test.assignAuthor(authors);
-		startApp("chrome", URL);
+		startApp("firefox", URL);
 	}
 
 	@AfterSuite
@@ -44,7 +44,7 @@ public class ProjectMethods extends SeMethods {
 		closeAllBrowsers();
 	}
 
-	@DataProvider(name="fetchData", indices = 0)
+	@DataProvider(name="fetchData", indices = {0,1})
 	public  Object[][] getData(){
 		return DataInputProvider.getSheet(dataSheetName);		
 	}	

@@ -332,10 +332,11 @@ public class SeMethods extends Report implements WdMethods{
 		} 
 		return text;
 	}
+	long number;
 
 	@Override
 	public long takeSnap(){
-		long number = (long) Math.floor(Math.random() * 900000000L) + 10000000L; 
+		number = (long) Math.floor(Math.random() * 900000000L) + 10000000L; 
 		try {
 			FileUtils.copyFile(driver.getScreenshotAs(OutputType.FILE) , new File("./reports/"+number+".jpg"));
 		} catch (WebDriverException e) {
@@ -344,6 +345,14 @@ public class SeMethods extends Report implements WdMethods{
 			System.out.println("The snapshot could not be taken");
 		}
 		return number;
+	}
+
+	public long getNumber() {
+		return number;
+	}
+
+	public void setNumber(long number) {
+		this.number = number;
 	}
 
 	@Override

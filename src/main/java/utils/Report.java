@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.File;
 import java.io.IOException;
 
 import com.aventstack.extentreports.ExtentReports;
@@ -9,15 +10,13 @@ import com.aventstack.extentreports.MediaEntityModelProvider;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public abstract class Report {
-	public static ExtentHtmlReporter html;
-	public static ExtentReports extent;
+	static ExtentHtmlReporter html;
+	static ExtentReports extent;
 	public static ExtentTest test, suiteTest;
 	public String testCaseName, testNodes, testDescription, category, authors;
 
-
 	public void startResult() {
 		html = new ExtentHtmlReporter("./reports/result.html");
-		html.setAppendExisting(true);		
 		extent = new ExtentReports();		
 		extent.attachReporter(html);	
 	}
@@ -46,10 +45,13 @@ public abstract class Report {
 			long snapNumber = 100000L;
 			snapNumber = takeSnap();
 			try {
+				File f = new File("./reports/"+snapNumber+".jpg");;
+				System.out.println(f.getAbsolutePath());
 				img = MediaEntityBuilder.createScreenCaptureFromPath
-						("./"+snapNumber+".jpg").build();
+						(f.getAbsolutePath()).build();
 			} catch (IOException e) {
-				
+				System.err.println(e.getMessage());
+
 			}
 		}
 		if(status.equalsIgnoreCase("PASS")) {

@@ -16,16 +16,7 @@ repositories {
 	jcenter()
 }
 
-dependencies {
-	// This dependency is exported to consumers, that is to say found on their compile classpath.
-	api 'org.apache.commons:commons-math3:3.6.1'
-
-	// This dependency is used internally, and not exposed to consumers on their own compile classpath.
-	implementation 'com.google.guava:guava:23.0'
-
-	// Use JUnit test framework
-	testImplementation 'junit:junit:4.12'
-
+dependencies{
 	// https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
 	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.13.0'
 
@@ -33,7 +24,7 @@ dependencies {
 	compile group: 'org.testng', name: 'testng', version: '6.14.2'
 
 	// https://mvnrepository.com/artifact/com.aventstack/extentreports
-	compile group: 'com.aventstack', name: 'extentreports', version: '3.1.5'
+	compile group: 'com.aventstack', name: 'extentreports', version: '4.0.4'
 
 	// https://mvnrepository.com/artifact/org.apache.poi/poi
 	compile group: 'org.apache.poi', name: 'poi', version: '3.17'
@@ -56,12 +47,12 @@ dependencies {
 test {
 	useTestNG() { suites 'testng.xml' }
 }
-sourceSets{ test.java.srcDir 'src/main' }
+sourceSets{ test.java.srcDir 'main' }
 /*task cucumber() {
-	doLast {
-		javaexec {
-			main = "cucumber.api.cli.Main"
-			args = ['src/test/java']
-		}
-	}
-}*/
+ doLast {
+ javaexec {
+ main = "cucumber.api.cli.Main"
+ args = ['src/test/java']
+ }
+ }
+ }*/
