@@ -11,7 +11,7 @@ public class ListOfTable {
 	}
 	@Override
 	public String toString() {
-		return "ListOfTable [name=" + name + ", progress=" + progress + "]";
+		return "ListOfTable name=" + name + ", progress=" + progress +"\n";
 	}
 
 }

@@ -20,9 +20,7 @@ public class LearnTable {
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
 		for (int i = 1; i < rows.size(); i++) {
 			List<WebElement> col = rows.get(i).findElements(By.tagName("td"));
-			for (int j = 0; j < col.size(); j++) {
-				ls.add(new ListOfTable(col.get(0).getText(), col.get(1).getText()));
-			}
+			ls.add(new ListOfTable(col.get(0).getText(), col.get(1).getText()));
 		}
 		System.out.println(ls);
 		System.out.println(ls.size());
