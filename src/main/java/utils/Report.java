@@ -2,6 +2,12 @@ package utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+
+import javax.mail.MessagingException;
+
+import org.testng.annotations.BeforeSuite;
+import org.zeroturnaround.zip.ZipUtil;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -10,19 +16,34 @@ import com.aventstack.extentreports.MediaEntityModelProvider;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public abstract class Report {
-	static ExtentHtmlReporter html;
-	static ExtentReports extent;
-	public static ExtentTest test, suiteTest;
+	public static String folder = "";
+	public static ExtentHtmlReporter html;
+	public static ExtentReports extent;
+	public ExtentTest test, suiteTest;
 	public String testCaseName, testNodes, testDescription, category, authors;
-
+	@BeforeSuite
 	public void startResult() {
-		html = new ExtentHtmlReporter("./reports/result.html");
-		
+		String now = LocalDateTime.now().toString();
+		folder = now.replaceAll("\\D", "");
+		File f = new File("./reports/"+folder);
+		f.mkdirs();
+		html = new ExtentHtmlReporter("./reports/"+folder+"/result.html");
 		extent = new ExtentReports();		
 		extent.attachReporter(html);	
 	}
-
-
+	//@AfterSuite
+	public void zip() {
+		System.out.println("zipping");
+			ZipUtil.pack(new File("./reports/"+folder), new File("./reports/"+folder+".zip"));
+	System.out.println("zip done");
+	try {
+		TriggerEmail.triggerEmail("./reports/"+folder+".zip");
+	} catch (MessagingException | IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	}
+	
 	public ExtentTest startTestModule(String testCaseName, String testDescription) {
 		suiteTest = extent.createTest(testCaseName, testDescription);
 		return suiteTest;
@@ -46,12 +67,9 @@ public abstract class Report {
 			long snapNumber = 100000L;
 			snapNumber = takeSnap();
 			try {
-				File f = new File("./reports/"+snapNumber+".jpg");;
-				System.out.println(f.getAbsolutePath());
 				img = MediaEntityBuilder.createScreenCaptureFromPath
-						(f.getAbsolutePath()).build();
+						("./images/"+snapNumber+".jpg").build();
 			} catch (IOException e) {
-				System.err.println(e.getMessage());
 
 			}
 		}

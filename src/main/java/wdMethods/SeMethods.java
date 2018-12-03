@@ -26,20 +26,21 @@ import utils.Report;
 
 public class SeMethods extends Report implements WdMethods{
 	public int i = 1;
-	public static RemoteWebDriver driver;
+	public  RemoteWebDriver driver;
+
 	@Override
 	public void startApp(String browser, String url) {
 		try {
 			if(browser.equalsIgnoreCase("chrome")){
 				//System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 				driver = new ChromeDriver();
-			} else if (browser.equalsIgnoreCase("firefox")){
+			} else if (browser.equalsIgnoreCase("ff")){
 				System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver.exe");
 				driver = new FirefoxDriver();
 			}
 			driver.get(url);
 			driver.manage().window().maximize();
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 			reportStep("The browser: "+browser+" launched successfully", "pass");
 		} catch (WebDriverException e) {			
 			reportStep("The browser: "+browser+" could not be launched", "fail");
@@ -332,27 +333,19 @@ public class SeMethods extends Report implements WdMethods{
 		} 
 		return text;
 	}
-	long number;
 
 	@Override
 	public long takeSnap(){
-		number = (long) Math.floor(Math.random() * 900000000L) + 10000000L; 
+		long number = (long) Math.floor(Math.random() * 900000000L) + 10000000L; 
 		try {
-			FileUtils.copyFile(driver.getScreenshotAs(OutputType.FILE) , new File("./reports/"+number+".jpg"));
+			FileUtils.copyFile(driver.getScreenshotAs(OutputType.FILE) , 
+					new File("./reports/"+folder+"/images/"+number+".jpg"));
 		} catch (WebDriverException e) {
-			System.out.println("The browser has been closed.");
+			System.out.println("The browser has been closed."+e.getMessage());
 		} catch (IOException e) {
-			System.out.println("The snapshot could not be taken");
+			System.out.println("The snapshot could not be taken"+e.getMessage());
 		}
 		return number;
-	}
-
-	public long getNumber() {
-		return number;
-	}
-
-	public void setNumber(long number) {
-		this.number = number;
 	}
 
 	@Override

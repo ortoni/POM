@@ -4,9 +4,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
 
 import utils.DataInputProvider;
 
@@ -15,23 +13,23 @@ import utils.DataInputProvider;
 public class ProjectMethods extends SeMethods {
 	public String browserName;
 	public String dataSheetName;
-
-	@BeforeSuite
-	public void beforeSuite(){
-		startResult();
-	}
-
+	
 	@BeforeClass
 	public void beforeClass(){		
 		startTestModule(testCaseName, testDescription);	
 	}
-    @Parameters({"url"})
 	@BeforeMethod
-	public void beforeMethod(String URL){
+	public void beforeMethod(){
+		System.out.println("");
 		test = startTestCase(testNodes);
 		test.assignCategory(category);
 		test.assignAuthor(authors);
-		startApp("chrome", URL);
+		startApp("chrome", "http://leaftaps.com/opentaps/control/main");
+		type(locateElement("id", "username"), 
+				"DemoSalesManager");
+		type(locateElement("id", "password"),"crmsfa");
+		locateElement("class", "decorativeSubmit").submit();
+		locateElement("linktext", "CRM/SFA");
 	}
 
 	@AfterSuite
@@ -44,9 +42,9 @@ public class ProjectMethods extends SeMethods {
 		closeAllBrowsers();
 	}
 
-	@DataProvider(name="fetchData", indices = {0,1})
+	@DataProvider(name="fetchData")
 	public  Object[][] getData(){
-		return DataInputProvider.getSheet(dataSheetName);		
+		return DataInputProvider.getSheet("TC001");		
 	}	
 
 

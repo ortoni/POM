@@ -16,7 +16,7 @@ public interface WdMethods {
 		 * @param browser - This will load the specified browser  
 		 * @throws MalformedURLException 
 		 */
-		public void startApp(String browser,String url);
+		public void startApp(String browser, String url);
 
 		/**
 		 * This method will locate the element using any given locator

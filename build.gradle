@@ -17,6 +17,11 @@ repositories {
 }
 
 dependencies{
+	// https://mvnrepository.com/artifact/javax.mail/mail
+	compile group: 'javax.mail', name: 'mail', version: '1.4.7'
+	// Zip folders
+	// https://mvnrepository.com/artifact/org.zeroturnaround/zt-zip
+	compile group: 'org.zeroturnaround', name: 'zt-zip', version: '1.13'
 	// https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
 	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.14.0'
 
