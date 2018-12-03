@@ -18,7 +18,10 @@ public class TC001_CreateLead extends ProjectMethods {
 	}
 	@Test(dataProvider="fetchData")
 	public  void createLead(String cname, String fname, String lname, String email)   {
-
+		type(locateElement("id", "username"), "DemoSalesManager");
+		type(locateElement("id", "password"), "crmsfa");
+		click(locateElement("class", "decorativeSubmit"));
+		click(locateElement("linktext", "CRM/SFA"));
 		click(locateElement("linktext", "Create Lead"));
 		type(locateElement("id", "createLeadForm_companyName"), cname);
 		type(locateElement("id", "createLeadForm_firstName"), fname);

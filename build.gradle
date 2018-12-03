@@ -18,13 +18,13 @@ repositories {
 
 dependencies{
 	// https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
-	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.13.0'
+	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.14.0'
 
 	// https://mvnrepository.com/artifact/org.testng/testng
 	compile group: 'org.testng', name: 'testng', version: '6.14.2'
 
 	// https://mvnrepository.com/artifact/com.aventstack/extentreports
-	compile group: 'com.aventstack', name: 'extentreports', version: '4.0.4'
+	compile group: 'com.aventstack', name: 'extentreports', version: '4.0.5'
 
 	// https://mvnrepository.com/artifact/org.apache.poi/poi
 	compile group: 'org.apache.poi', name: 'poi', version: '3.17'
@@ -44,15 +44,28 @@ dependencies{
 	// https://mvnrepository.com/artifact/io.cucumber/cucumber-java
 	compile group: 'io.cucumber', name: 'cucumber-java', version: '3.0.2'
 }
+
 test {
-	useTestNG() { suites 'testng.xml' }
+	useTestNG() {
+		 suites 'testng.xml'
+	}
 }
-sourceSets{ test.java.srcDir 'main' }
-/*task cucumber() {
- doLast {
- javaexec {
- main = "cucumber.api.cli.Main"
- args = ['src/test/java']
- }
- }
- }*/
+sourceSets{
+	test.java.srcDir 'src/main/java'
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

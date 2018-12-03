@@ -4,7 +4,7 @@
 	<parameter name="url" value="http://leaftaps.com/opentaps"></parameter>
 	<test thread-count="5" name="leads">
 		<classes>
-			<class name="test.TC001_LoginAndLogout" />
+			<class name="testcases.TC001_CreateLead" />
 	<!-- 		<class name="testcases.TC002_EditLead" />
 			<class name="testcases.TC003_DeleteLead" />
 			<class name="testcases.TC004_DuplicateLead" />

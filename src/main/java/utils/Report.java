@@ -17,6 +17,7 @@ public abstract class Report {
 
 	public void startResult() {
 		html = new ExtentHtmlReporter("./reports/result.html");
+		
 		extent = new ExtentReports();		
 		extent.attachReporter(html);	
 	}
